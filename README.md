@@ -18,6 +18,51 @@ Le code ajoute également la requête actuelle au journal d'accès pour suivre l
 
 Il est important de noter que ce code est un exemple simplifié de la protection contre les attaques DDoS et peut être amélioré pour une meilleure sécurité.
 
+Vous pouvez également jouer avec l'iptable comme sur l'exemple simple ci-dessous :
+
+```
+<?php
+// Adresse IP suspecte à bloquer
+$ip = $_SERVER['REMOTE_ADDR'];
+
+// Exécuter la commande iptables pour bloquer l'adresse IP
+system("iptables -A INPUT -s $ip -j DROP");
+
+// Afficher un message d'erreur à l'utilisateur
+echo "L'accès à ce site est temporairement indisponible.";
+?>
+```
+
+Voici un exemple simple de code en PHP qui utilise la fonction iptables pour bloquer les adresses IP indésirables :
+Ce code ajoute une règle dans le pare-feu iptables pour bloquer l'adresse IP suspecte. Cependant, il est important de noter que ce code est très basique et peut être facilement contourné par des attaquants déterminés.
+
+```
+<?php
+// Validation de l'adresse IP fournie
+if (!filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP)) {
+    die('Adresse IP invalide');
+}
+
+// Echappement des données d'entrée
+$ip = escapeshellarg($_SERVER['REMOTE_ADDR']);
+
+// Ajout de l'adresse IP à la liste de blocage
+$filename = 'blocked_ips.txt';
+file_put_contents($filename, $ip . "\n", FILE_APPEND);
+
+// Vérification régulière des adresses IP bloquées
+$blocked_ips = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+foreach ($blocked_ips as $blocked_ip) {
+    system("iptables -A INPUT -s $blocked_ip -j DROP");
+}
+
+// Message d'erreur à afficher à l'utilisateur
+echo "L'accès à ce site est temporairement indisponible.";
+?>
+```
+
+Dans cet exemple, les adresses IP bloquées sont stockées dans un fichier texte `blocked_ips.txt`, et une vérification régulière est effectuée pour bloquer les adresses IP en utilisant la commande iptables. Le code utilise également la fonction `filter_var pour valider` l'adresse IP et escapeshellarg pour échapper les arguments de la commande système.
+
 --------------------------------------------------------------------------------------------------------------------------------------
 
 ## <strong>❤️</strong> (Contribuer) <strong>❤️</strong>
