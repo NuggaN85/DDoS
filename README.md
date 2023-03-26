@@ -18,7 +18,11 @@ Le code ajoute également la requête actuelle au journal d'accès pour suivre l
 
 Il est important de noter que ce code est un exemple simplifié de la protection contre les attaques DDoS et peut être amélioré pour une meilleure sécurité.
 
+--------------------------------------------------------------------------------------------------------------------------------------
+
 Vous pouvez également jouer avec l'iptable comme sur l'exemple simple ci-dessous :
+Voici un exemple simple de code en PHP qui utilise la fonction iptables pour bloquer les adresses IP indésirables :
+Ce code ajoute une règle dans le pare-feu iptables pour bloquer l'adresse IP suspecte. Cependant, il est important de noter que ce code est très basique et peut être facilement contourné par des attaquants déterminés.
 
 ```
 <?php
@@ -33,8 +37,9 @@ echo "L'accès à ce site est temporairement indisponible.";
 ?>
 ```
 
-Voici un exemple simple de code en PHP qui utilise la fonction iptables pour bloquer les adresses IP indésirables :
-Ce code ajoute une règle dans le pare-feu iptables pour bloquer l'adresse IP suspecte. Cependant, il est important de noter que ce code est très basique et peut être facilement contourné par des attaquants déterminés.
+--------------------------------------------------------------------------------------------------------------------------------------
+
+Dans cet exemple, les adresses IP bloquées sont stockées dans un fichier texte `blocked_ips.txt`, et une vérification régulière est effectuée pour bloquer les adresses IP en utilisant la commande iptables. Le code utilise également la fonction `filter_var pour valider` l'adresse IP et escapeshellarg pour échapper les arguments de la commande système.
 
 ```
 <?php
@@ -60,8 +65,6 @@ foreach ($blocked_ips as $blocked_ip) {
 echo "L'accès à ce site est temporairement indisponible.";
 ?>
 ```
-
-Dans cet exemple, les adresses IP bloquées sont stockées dans un fichier texte `blocked_ips.txt`, et une vérification régulière est effectuée pour bloquer les adresses IP en utilisant la commande iptables. Le code utilise également la fonction `filter_var pour valider` l'adresse IP et escapeshellarg pour échapper les arguments de la commande système.
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
