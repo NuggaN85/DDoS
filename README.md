@@ -1,4 +1,4 @@
-# DDoS
+# DDoS (Attaque par déni de service)
 
 ```
  * Dev: NuggaN85
