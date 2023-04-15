@@ -39,7 +39,7 @@ echo "L'accès à ce site est temporairement indisponible.";
 
 --------------------------------------------------------------------------------------------------------------------------------------
 
-Dans cet exemple, les adresses IP bloquées sont stockées dans un fichier texte `blocked_ips.txt`, et une vérification régulière est effectuée pour bloquer les adresses IP en utilisant la commande iptables. Le code utilise également la fonction `filter_var pour valider` l'adresse IP et escapeshellarg pour échapper les arguments de la commande système.
+Dans cet exemple, les adresses IP bloquées sont stockées dans un fichier texte `blocked_ips.txt`, et une vérification régulière est effectuée pour bloquer les adresses IP en utilisant la commande iptables. Le code utilise également la fonction `filter_var` pour valider l'adresse IP et escapeshellarg pour échapper les arguments de la commande système.
 
 ```
 <?php
