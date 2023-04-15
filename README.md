@@ -21,7 +21,7 @@ Il est important de noter que ce code est un exemple simplifié de la protection
 --------------------------------------------------------------------------------------------------------------------------------------
 
 Vous pouvez également jouer avec l'iptable comme sur l'exemple simple ci-dessous :
-Voici un exemple simple de code en PHP qui utilise la fonction iptables pour bloquer les adresses IP indésirables :
+Voici un exemple simple de code en PHP qui utilise la fonction `iptables` pour bloquer les adresses IP indésirables :
 Ce code ajoute une règle dans le pare-feu iptables pour bloquer l'adresse IP suspecte. Cependant, il est important de noter que ce code est très basique et peut être facilement contourné par des attaquants déterminés.
 
 ```
