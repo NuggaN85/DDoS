@@ -29,11 +29,17 @@ Ce code ajoute une règle dans le pare-feu iptables pour bloquer l'adresse IP su
 // Adresse IP suspecte à bloquer
 $ip = $_SERVER['REMOTE_ADDR'];
 
-// Exécuter la commande iptables pour bloquer l'adresse IP
-system("iptables -A INPUT -s $ip -j DROP");
+// Vérifier si l'adresse IP est valide
+if (filter_var($ip, FILTER_VALIDATE_IP)) {
+    // Exécuter la commande iptables pour bloquer l'adresse IP
+    system("iptables -A INPUT -s $ip -j DROP");
 
-// Afficher un message d'erreur à l'utilisateur
-echo "L'accès à ce site est temporairement indisponible.";
+    // Afficher un message d'erreur à l'utilisateur
+    echo "L'accès à ce site est temporairement indisponible.";
+} else {
+    // Afficher un message d'erreur si l'adresse IP est invalide
+    echo "Adresse IP invalide.";
+}
 ?>
 ```
 
