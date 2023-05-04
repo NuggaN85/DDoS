@@ -59,12 +59,16 @@ $ip = escapeshellarg($_SERVER['REMOTE_ADDR']);
 
 // Ajout de l'adresse IP à la liste de blocage
 $filename = 'blocked_ips.txt';
-file_put_contents($filename, $ip . "\n", FILE_APPEND);
+file_put_contents($filename, $ip . "\n", FILE_APPEND | LOCK_EX);
 
 // Vérification régulière des adresses IP bloquées
 $blocked_ips = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+$iptables_current = shell_exec('iptables -L INPUT -n');
+
 foreach ($blocked_ips as $blocked_ip) {
-    system("iptables -A INPUT -s $blocked_ip -j DROP");
+    if (strpos($iptables_current, $blocked_ip) === false) {
+        system("iptables -A INPUT -s $blocked_ip -j DROP");
+    }
 }
 
 // Message d'erreur à afficher à l'utilisateur
