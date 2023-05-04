@@ -19,7 +19,7 @@ $requests = array_filter($access_list, function($line) use ($ip_address) {
 });
 if (count($requests) > 10) {
   http_response_code(429);
-  exit('Too many requests');
+  exit('Trop de requêtes');
 }
 
 // Ajouter la demande actuelle au journal des accès
